@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zansumi | Creator Profile</title>
+
+<link rel="icon" type="image/png" href="assets/avatars/logonwevo2.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    color:white;
+}
+
+.banner{
+    position:relative;
+    height:350px;
+    overflow:hidden;
+}
+
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-card{
+    position:relative;
+    max-width:1200px;
+    margin:auto;
+    margin-top:-90px;
+    padding:20px;
+}
+
+.profile-header{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:center;
+}
+
+.avatar{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:5px solid #ff2020;
+    object-fit:cover;
+    background:#222;
+}
+
+.info h1{
+    font-size:3rem;
+}
+
+.info p{
+    color:#ccc;
+    margin-top:5px;
+}
+
+.badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:8px 15px;
+    background:#ff2020;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.section{
+    background:#151515;
+    margin-top:25px;
+    border-radius:15px;
+    padding:25px;
+    border:1px solid #262626;
+}
+
+.section h2{
+    margin-bottom:20px;
+    color:#ff4040;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:#1c1c1c;
+    padding:15px;
+    border-radius:12px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:#ff2020;
+    padding:10px 15px;
+    border-radius:10px;
+    margin:5px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ff5050;
+}
+
+.team-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.team-logo{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+}
+
+.rank{
+    background:#1e1e1e;
+    padding:15px;
+    border-radius:12px;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+}
+
+.small{
+    color:#999;
+    font-size:14px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- BANNER -->
+<section class="banner">
+    <!-- CAMBIAR RUTA -->
+    <img src="assets/banners/baner2.png" alt="Banner">
+</section>
+
+<div class="profile-card">
+
+    <div class="profile-header">
+
+        <!-- FOTO PERFIL -->
+        <img class="avatar" src="assets/avatars/logonwevo2.png" alt="Zansumi">
+
+        <div class="info">
+            <h1>Zansumi</h1>
+            <p>🇲🇽 México</p>
+            <p>Creador de Contenido</p>
+
+            <span class="badge">Founder • Team LMC</span>
+
+            <br><br>
+
+            <a class="btn" href="#links">Links</a>
+            <a class="btn" href="#teamlmc">Team LMC</a>
+            <a class="btn" href="#setup">Gaming Setup</a>
+            <a class="btn" href="#friends">Friends</a>
+            <a class="btn" href="#ranks">Ranks</a>
+        </div>
+
+    </div>
+
+    <!-- LINKS -->
+    <section class="section" id="links">
+
+        <h2>🔗 Links</h2>
+
+        <a class="btn" target="_blank" href="https://www.youtube.com/@Zansumii/videos">YouTube</a>
+
+        <a class="btn" target="_blank" href="https://www.twitch.tv/zansumi">Twitch</a>
+
+        <a class="btn" target="_blank" href="https://kick.com/zansumi">Kick</a>
+
+        <a class="btn" target="_blank" href="https://www.tiktok.com/@zansum1">TikTok</a>
+
+        <a class="btn" target="_blank" href="https://steamcommunity.com/id/Zansumi/">Steam</a>
+
+        <a class="btn" target="_blank" href="https://discord.gg/9pQ4MXj7">Discord</a>
+
+        <a class="btn" target="_blank" href="https://www.instagram.com/zansum1">Instagram</a>
+
+    </section>
+
+    <!-- TEAM LMC -->
+    <section class="section" id="teamlmc">
+
+        <h2>Team LMC ™</h2>
+
+        <div class="team-card">
+
+            <!-- LOGO TEAM -->
+            <img class="team-logo"
+                 src="assets/avatars/BLOGOLMC2.png"
+                 alt="Team LMC">
+
+            <div>
+
+                <h3>Founder de Team LMC</h3>
+
+                <p class="small">
+                    Organización enfocada en la creación de contenido,
+                    eventos y proyectos relacionados con videojuegos.
+                </p>
+
+                <br>
+
+                <a class="btn"
+                   target="_blank"
+                   href="https://zansumilmc.github.io/TeamLMC/">
+                   Página Oficial
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SETUP -->
+    <section class="section" id="setup">
+
+        <h2>🖥 Gaming Setup & PC Hardware</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <strong>Motherboard</strong>
+                <p>MSI B450-A Pro Max</p>
+            </div>
+
+            <div class="card">
+                <strong>CPU</strong>
+                <p>AMD Ryzen 5 4600G</p>
+            </div>
+
+            <div class="card">
+                <strong>GPU</strong>
+                <p>AMD Radeon RX 580 8GB</p>
+            </div>
+
+            <div class="card">
+                <strong>SSD</strong>
+                <p>Team Group GX2 512GB</p>
+            </div>
+
+            <div class="card">
+                <strong>RAM</strong>
+                <p>Kingston Fury Beast RGB DDR4 16GB</p>
+            </div>
+
+            <div class="card">
+                <strong>Monitor Principal</strong>
+                <p>X250GF18 25" 180Hz IPS</p>
+            </div>
+
+            <div class="card">
+                <strong>Monitor Secundario</strong>
+                <p>QTouch 24" Full HD 75Hz</p>
+            </div>
+
+            <div class="card">
+                <strong>Mouse</strong>
+                <p>Yeyian Series 2000</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FRIENDS -->
+    <section class="section" id="friends">
+
+        <h2>👥 Friends</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>IwanHX</h3>
+            </div>
+             <div class="card">
+                <h3>TheAndreusPR</h3>
+            </div>
+
+            <div class="card">
+                <h3>RootRaYzZ</h3>
+            </div>
+
+            <div class="card">
+                <h3>zFrixz</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RANKS -->
+    <section class="section" id="ranks">
+
+        <h2>🏆 Ranks</h2>
+
+        <div class="grid">
+
+            <div class="rank">
+                <h3>VALORANT</h3>
+                <p>Gold 1</p>
+            </div>
+
+            <div class="rank">
+                <h3>Fortnite</h3>
+                <p>Silver I</p>
+            </div>
+
+            <div class="rank">
+                <h3>League of Legends</h3>
+                <p>Iron IV</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ROLES -->
+    <section class="section">
+
+        <h2>Roles</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                Founder
+            </div>
+
+            <div class="card">
+                Content Creator
+            </div>
+
+            <div class="card">
+                Desarrollador
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<footer>
+    © 2026 Zansumi • All Rights Reserved
+</footer>
+
+</body>
+</html>
