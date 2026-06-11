@@ -12,112 +12,353 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#0d0d0d;
+    background:#0b0b0b;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 40px;
+
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    z-index:9999;
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#d1d1d1;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
     color:white;
 }
 
-.banner{
+/* HERO */
+
+.hero{
     position:relative;
-    height:350px;
+
+    width:95%;
+    max-width:1400px;
+
+    height:420px;
+
+    margin:100px auto 20px;
+
+    border-radius:25px;
+
     overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
 }
 
-.banner img{
+.hero-content{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:100%;
+
+    text-align:center;
+
+    z-index:10;
+}
+
+.hero-avatar{
+    width:140px;
+    height:140px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    background:#111;
+
+    border:4px solid white;
+}
+
+.hero h1{
+    margin-top:15px;
+    font-size:2.5rem;
+}
+/* MAIN */
+
+main{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+}
+.hero-banner{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-.profile-card{
-    position:relative;
-    max-width:1200px;
-    margin:auto;
-    margin-top:-90px;
-    padding:20px;
+.hero-overlay{
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.2),
+        rgba(0,0,0,.85)
+    );
 }
 
-.profile-header{
-    display:flex;
-    flex-wrap:wrap;
-    gap:30px;
-    align-items:center;
-}
-
-.avatar{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    border:5px solid #ff2020;
-    object-fit:cover;
-    background:#222;
-}
-
-.info h1{
-    font-size:3rem;
-}
-
-.info p{
-    color:#ccc;
-    margin-top:5px;
-}
-
-.badge{
-    display:inline-block;
+.hero-subtitle{
+    color:#d0d0d0;
     margin-top:10px;
-    padding:8px 15px;
-    background:#ff2020;
-    border-radius:8px;
-    font-weight:bold;
 }
+
+.hero-badges{
+    margin-top:15px;
+}
+
+.hero-badges span{
+    display:inline-block;
+    padding:8px 14px;
+    margin:5px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+}
+
+/* SECTION */
 
 .section{
     background:#151515;
+
+    border-radius:20px;
+
+    padding:30px;
+
     margin-top:25px;
-    border-radius:15px;
-    padding:25px;
-    border:1px solid #262626;
+
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .section h2{
     margin-bottom:20px;
-    color:#ff4040;
 }
+
+/* GRID */
 
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
+    gap:20px;
 }
+
+/* CARD */
 
 .card{
     background:#1c1c1c;
-    padding:15px;
-    border-radius:12px;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    transition:.3s;
 }
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+/* BOTONES */
 
 .btn{
     display:inline-block;
+
     text-decoration:none;
-    color:white;
-    background:#ff2020;
-    padding:10px 15px;
+
+    color:black;
+
+    background:white;
+
+    padding:10px 16px;
+
     border-radius:10px;
+
     margin:5px;
+
     transition:.3s;
 }
 
 .btn:hover{
-    background:#ff5050;
+    background:#ddd;
 }
 
+/* LIVE */
+
+.live-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.stream-card{
+    background:#1c1c1c;
+    border-radius:15px;
+    padding:15px;
+}
+
+.stream-card iframe{
+    width:100%;
+    height:350px;
+    border:none;
+    border-radius:10px;
+}
+
+/* FRIENDS */
+
+.friends-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.friend-card{
+    text-decoration:none;
+
+    color:white;
+
+    background:#1c1c1c;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+}
+
+.friend-card img{
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    margin-bottom:10px;
+}
+
+/* PORTFOLIO */
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.portfolio-card{
+    overflow:hidden;
+
+    background:#1c1c1c;
+
+    border-radius:20px;
+}
+
+.portfolio-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.portfolio-card h3{
+    padding:15px 15px 0;
+}
+
+.portfolio-card p{
+    padding:15px;
+    color:#bdbdbd;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:50px;
+    color:#888;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .live-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        height:420px;
+    }
+
+    .hero-avatar{
+        width:130px;
+        height:130px;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+}
 .team-card{
     display:flex;
+    gap:25px;
     align-items:center;
-    gap:20px;
 }
 
 .team-logo{
@@ -126,111 +367,191 @@ body{
     object-fit:contain;
 }
 
-.rank{
-    background:#1e1e1e;
-    padding:15px;
-    border-radius:12px;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#888;
-}
-
 .small{
-    color:#999;
-    font-size:14px;
+    color:#bdbdbd;
 }
 </style>
 
 </head>
 <body>
 
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Zansumi
+    </div>
+
+    <div class="nav-links">
+        <a href="#setup">Setup</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#live">Live</a>
+        <a href="#projects">Proyectos</a>
+    </div>
+
+</nav>
+
 <!-- BANNER -->
-<section class="banner">
-    <!-- CAMBIAR RUTA -->
-    <img src="assets/banners/baner2.png" alt="Banner">
+
+<section class="hero">
+
+    <img src="assets/banners/baner2.png" class="hero-banner">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <img src="assets/avatars/logonwevo2.png" class="hero-avatar">
+
+        <h1>Zansumi</h1>
+
+        <p class="hero-subtitle">
+            Minecraft Server Developer • Content Creator
+        </p>
+
+        <div class="hero-badges">
+            <span>Creador de Contenido</span>
+            <span>Developer</span>
+            <span>Founder Team LMC</span>
+        </div>
+
+    </div>
+
 </section>
 
-<div class="profile-card">
+<main>
 
-    <div class="profile-header">
+<section class="section" id="about">
+    <section class="section" id="about">
 
-        <!-- FOTO PERFIL -->
-        <img class="avatar" src="assets/avatars/logonwevo2.png" alt="Zansumi">
+    <h2>Sobre Mí</h2>
 
-        <div class="info">
-            <h1>Zansumi</h1>
-            <p>🇲🇽 México</p>
-            <p>Creador de Contenido</p>
+    <p>
+        Soy Zansumi, creador de contenido y desarrollador de
+        servidores de Minecraft de México.
 
-            <span class="badge">Founder • Team LMC</span>
+        Me especializo en la creación de experiencias para
+        comunidades, sistemas personalizados, optimización
+        de servidores y proyectos enfocados en Minecraft.
 
-            <br><br>
+        También soy fundador de Team LMC, una organización
+        enfocada en la creación de contenido, eventos y
+        proyectos para la comunidad.
+    </p>
 
-            <a class="btn" href="#links">Links</a>
-            <a class="btn" href="#teamlmc">Team LMC</a>
-            <a class="btn" href="#setup">Gaming Setup</a>
-            <a class="btn" href="#friends">Friends</a>
-            <a class="btn" href="#ranks">Ranks</a>
-        </div>
+</section>
 
     </div>
 
     <!-- LINKS -->
     <section class="section" id="links">
 
-        <h2>🔗 Links</h2>
+        <h2>Links</h2>
+        
+        <a class="btn" target="_blank" href="https://www.youtube.com/@Zansumii/videos">YouTube @Zansumii</a>
 
-        <a class="btn" target="_blank" href="https://www.youtube.com/@Zansumii/videos">YouTube</a>
+        <a class="btn" target="_blank" href="https://www.twitch.tv/zansumi">Twitch @zansumi</a>
 
-        <a class="btn" target="_blank" href="https://www.twitch.tv/zansumi">Twitch</a>
+        <a class="btn" target="_blank" href="https://kick.com/zansumi">Kick @zansumi</a>
 
-        <a class="btn" target="_blank" href="https://kick.com/zansumi">Kick</a>
+        <a class="btn" target="_blank" href="https://www.tiktok.com/@zansum1">TikTok @zansum1</a>
 
-        <a class="btn" target="_blank" href="https://www.tiktok.com/@zansum1">TikTok</a>
+        <a class="btn" target="_blank" href="https://steamcommunity.com/id/Zansumi/">Steam @Zansumi</a>
 
-        <a class="btn" target="_blank" href="https://steamcommunity.com/id/Zansumi/">Steam</a>
+        <a class="btn" target="_blank" href="https://discord.gg/9pQ4MXj7">Discord @Zansumi</a>
 
-        <a class="btn" target="_blank" href="https://discord.gg/9pQ4MXj7">Discord</a>
+        <a class="btn" target="_blank" href="https://www.instagram.com/zansum1">Instagram @zansum1</a>
 
-        <a class="btn" target="_blank" href="https://www.instagram.com/zansum1">Instagram</a>
 
     </section>
 
-    <!-- TEAM LMC -->
-    <section class="section" id="teamlmc">
+    <section class="section">
 
-        <h2>Team LMC ™</h2>
+    <h2>Creator Stats</h2>
 
-        <div class="team-card">
+    <div class="grid">
 
-            <!-- LOGO TEAM -->
-            <img class="team-logo"
-                 src="assets/avatars/BLOGOLMC2.png"
-                 alt="Team LMC">
+        <div class="card">
+            <h3>YouTube</h3>
+            <p>1000+ Suscriptores</p>
+        </div>
 
-            <div>
+        <div class="card">
+            <h3>Twitch</h3>
+            <p>400+</p>
+        </div>
 
-                <h3>Founder de Team LMC</h3>
+        <div class="card">
+            <h3>Kick</h3>
+            <p>50+</p>
+        </div>
 
-                <p class="small">
-                    Organización enfocada en la creación de contenido,
-                    eventos y proyectos relacionados con videojuegos.
-                </p>
+    </div>
 
-                <br>
+</section>
 
-                <a class="btn"
-                   target="_blank"
-                   href="https://zansumilmc.github.io/TeamLMC/">
-                   Página Oficial
-                </a>
+<section class="section" id="projects">
 
-            </div>
+    <h2>Proyectos Destacados</h2>
+
+    <div class="grid">
+
+        <div class="card">
+
+        <img class="team-logo"
+        src="assets/avatars/BLOGOLMC2.png"
+        alt="Team LMC">
+
+        <h3>Team LMC</h3>
+
+        <p>Comunidad y organización de contenido.</p>
+
+        <a class="btn"
+        target="_blank"
+        href="https://zansumilmc.github.io/TeamLMC/">
+         Página Oficial
+        </a>
 
         </div>
+
+        <div class="card">
+
+        <img class="team-logo"
+        src="assets/avatars/Miniatura de YouTube podcast minimalista azul.png"
+        alt="Team LMC">
+
+        <h3>LMC Podcast</h3>
+        <p>Podcast enfocado en Minecraft y gaming.</p>
+
+        <a class="btn"
+        target="_blank"
+         href="https://www.youtube.com/watch?v=_JusN39_3Ys&list=PL3zAYZVqJ8nMtsujlGd0pAYPhXcW8CA1N">
+        Episodios en YouTube
+        </a>
+
+        </div>
+
+        <div class="card">
+
+        <img class="team-logo"
+        src="assets/avatars/lmcstudios.png"
+        alt="Team LMC">
+
+        <h3>LMC Studios</h3>
+
+        <p>Estudio de desarrollo creacion de eventos en Minecraft.</p>
+
+        <a class="btn"
+        target="_blank"
+        href="https://zansumilmc.github.io/TeamLMC/#studios">
+        Página Oficial
+        </a>
+
+        </div>
+
+    </div>
 
     </section>
 
@@ -285,83 +606,150 @@ footer{
 
     </section>
 
-    <!-- FRIENDS -->
-    <section class="section" id="friends">
+   <section class="section" id="friends">
 
-        <h2>👥 Friends</h2>
+    <h2>Friends</h2>
 
-        <div class="grid">
+    <div class="friends-grid">
 
-            <div class="card">
-                <h3>IwanHX</h3>
-            </div>
-             <div class="card">
-                <h3>TheAndreusPR</h3>
-            </div>
+        <a href="https://www.tiktok.com/@rayzz.21_" class="friend-card">
 
-            <div class="card">
-                <h3>RootRaYzZ</h3>
-            </div>
+            <img src="assets/avatars/razz.png">
 
-            <div class="card">
-                <h3>zFrixz</h3>
-            </div>
+            <h3>RootRaYzZ</h3>
 
-        </div>
+        </a>
 
-    </section>
+        <a href="https://www.youtube.com/@zFRIXZ" class="friend-card">
 
-    <!-- RANKS -->
-    <section class="section" id="ranks">
+            <img src="assets/avatars/zfrixz.png">
 
-        <h2>🏆 Ranks</h2>
+            <h3>zFrixz</h3>
 
-        <div class="grid">
+        </a>
 
-            <div class="rank">
-                <h3>VALORANT</h3>
-                <p>Gold 1</p>
-            </div>
+        <a href="https://www.twitch.tv/iwanhx" class="friend-card">
 
-            <div class="rank">
-                <h3>Fortnite</h3>
-                <p>Silver I</p>
-            </div>
+            <img src="assets/avatars/iwan.png">
 
-            <div class="rank">
-                <h3>League of Legends</h3>
-                <p>Iron IV</p>
-            </div>
+            <h3>IwanHX</h3>
 
-        </div>
+        </a>
 
-    </section>
+        <a href="https://kick.com/theandreuspr" class="friend-card">
 
-    <!-- ROLES -->
-    <section class="section">
+            <img src="assets/avatars/andreus.png">
 
-        <h2>Roles</h2>
+            <h3>TheAndreusPR</h3>
 
-        <div class="grid">
+        </a>
 
-            <div class="card">
-                Founder
-            </div>
+    </div>
 
-            <div class="card">
-                Content Creator
-            </div>
+</section>
 
-            <div class="card">
-                Desarrollador
-            </div>
+    <section class="section" id="portfolio">
+
+    <h2>Minecraft Development Portfolio</h2>
+
+    <div class="portfolio-grid">
+
+        <div class="portfolio-card">
+
+            <img src="assets/avatars/logo.png">
+
+            <h3>LMC Proyect</h3>
+
+            <p>
+                Desarrollo de sistemas,
+                eventos y configuraciones.
+            </p>
 
         </div>
 
-    </section>
+        <div class="portfolio-card">
 
-</div>
+            <img src="assets/avatars/pedaafio2026.png">
 
+            <h3>Pedsafio</h3>
+
+            <p>
+                Promocion y branding para el evento de Minecraft
+            </p>
+
+        </div>
+
+        <div class="portfolio-card">
+
+            <img src="assets/avatars/image-removebg-preview_4.png">
+
+            <h3>SkyBlock</h3>
+
+            <p>
+            Mapa y diseño de experiencia para el modo de juego SkyBlock.
+            </p>
+
+        </div>
+
+    </div>
+
+    <section class="section" id="Tech">
+
+    <h2>Tecnologías</h2>
+
+    <div class="grid">
+
+        <div class="card">JavaScript</div>
+        <div class="card">YAML</div>
+        <div class="card">JSON</div>
+        <div class="card">PlaceholderAPI</div>
+        <div class="card">Vault</div>
+        <div class="card">LuckPerms</div>
+        <div class="card">EssentialsX</div>
+        <div class="card">WorldEdit</div>
+        <div class="card">WorldGuard</div>
+        <div class="card">Citizens</div>
+        <div class="card">Mohist</div>
+        <div class="card">PaperMC</div>
+
+    </div>
+
+</section>
+
+<section class="section" id="live">
+
+    <h2>Live Status</h2>
+
+    <div class="live-grid">
+
+        <!-- Twitch -->
+        <div class="stream-card">
+
+            <h3>Twitch</h3>
+
+            <iframe
+                src="https://player.twitch.tv/?channel=zansumi&parent=zansumilmc.github.io"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <!-- Kick -->
+        <div class="stream-card">
+
+            <h3>Kick</h3>
+
+            <iframe
+                src="https://kick.com/zansumi">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
 <footer>
     © 2026 Zansumi • All Rights Reserved
 </footer>
