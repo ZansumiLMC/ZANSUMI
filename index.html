@@ -12,13 +12,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Zansumi">
 <meta property="og:title" content="Zansumi | Creador de contenido">
-<meta property="og:description" content="Hago streams y creo eventos de Minecraft.">
-<meta property="og:url" content="https://zansumilmc.github.io/">
+<meta property="og:description" content="Hago streams, armo eventos de Minecraft y desarrollo servidores.">
+<meta property="og:url" content="https://zansumilmc.github.io/ZANSUMI/">
 <meta property="og:image" content="https://zansumilmc.github.io/ZANSUMI/assets/banners/baner2.png">
 <meta property="og:image:alt" content="Banner de Zansumi">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Zansumi | Creador de contenido">
-<meta name="twitter:description" content="Hago streams y creo eventos de Minecraft">
+<meta name="twitter:description" content="Hago streams, armo eventos de Minecraft y desarrollo servidores.">
 <meta name="twitter:image" content="https://zansumilmc.github.io/ZANSUMI/assets/banners/baner2.png">
 <link rel="icon" type="image/png" href="assets/avatars/logonwevo2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,9 +94,9 @@ main{width:92%;max-width:1100px;margin:0 auto;padding-bottom:20px}
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 20px 50px}
 .hero{position:relative;overflow:hidden}
 .hero>*{position:relative;z-index:1}
-.hero>.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.5;
-    -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
-.hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(12,5,6,.65))}
+.hero>.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.9;
+    -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent);mask-image:linear-gradient(to bottom,#000 70%,transparent)}
+.hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(12,5,6,.15) 35%,rgba(12,5,6,.6))}
 .ring{position:relative;width:156px;height:156px;display:grid;place-items:center;animation:bob 4s ease-in-out infinite}
 .ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--a),transparent 30%,#fff,var(--red-glow),transparent 80%);animation:spin 2.4s linear infinite;filter:blur(1px)}
 .hero-avatar{position:relative;width:142px;height:142px;border-radius:50%;object-fit:contain;background:#0c0506;border:3px solid #0c0506}
@@ -210,6 +210,23 @@ main{width:92%;max-width:1100px;margin:0 auto;padding-bottom:20px}
 .spec strong{font-family:var(--display);font-size:.95rem;margin-bottom:4px;text-shadow:0 0 8px #fff}
 .spec p{color:var(--text)}
 
+/* ---------- REPRODUCTOR DE MUSICA ---------- */
+.player{position:fixed;left:18px;bottom:18px;z-index:90;display:flex;align-items:center;gap:10px;padding:8px 16px 8px 14px;border-radius:999px;
+    background:rgba(23,9,9,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid #fff;box-shadow:0 0 12px rgba(255,255,255,.35),0 0 30px rgba(255,42,61,.35);animation:pulse 3s ease-in-out infinite}
+.player[hidden]{display:none}
+.player button{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:transparent;color:#fff;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.7,.5,1),background .25s,box-shadow .25s}
+.player button:hover{transform:scale(1.18);background:var(--red);box-shadow:var(--box-glow)}
+.player button:active{transform:scale(.88)}
+.player button.main{width:40px;height:40px}
+.player svg{width:16px;height:16px;fill:currentColor;pointer-events:none}
+.eq{display:flex;align-items:flex-end;gap:2px;height:18px}
+.eq i{width:3px;height:4px;border-radius:2px;background:#fff;box-shadow:0 0 6px #fff;transition:height .3s}
+.player.playing .eq i{animation:eq .8s ease-in-out infinite alternate}
+.player.playing .eq i:nth-child(2){animation-delay:.2s}.player.playing .eq i:nth-child(3){animation-delay:.4s}.player.playing .eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{from{height:3px}to{height:18px}}
+.ptitle{max-width:130px;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 0 6px rgba(255,255,255,.6)}
+#pvol{width:80px;accent-color:#ff2a3d;cursor:pointer}
+@media(max-width:600px){.player{left:10px;right:10px;bottom:10px;justify-content:center;gap:8px;padding:8px 12px}.ptitle{max-width:80px}#pvol{width:60px}}
 footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9rem}
 
 @media(max-width:1000px){.pcard{flex-basis:calc(33.33% - 14px)}}
@@ -239,7 +256,7 @@ footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9r
 <!-- HERO -->
 <header class="hero">
     <!-- BANNER DE FONDO (16:9, ej. 1920x1080): assets/banners/baner2.png -->
-    <img class="hero-bg" src="assets/banners/baner2.png" alt="" onerror="this.remove()">
+    <img class="hero-bg" id="heroBg" src="assets/banners/baner2.png" alt="">
     <div class="ring"><img src="assets/avatars/logonwevo2.png" class="hero-avatar" alt="Logo de Zansumi"></div>
     <h1>Zansumi</h1>
     <p class="hero-subtitle">Minecraft Server Developer y creador de contenido</p>
@@ -373,6 +390,17 @@ footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9r
     </section>
 </main>
 
+<!-- MUSICA: se activa sola si hay canciones en assets/music/ -->
+<div class="player" id="player" hidden>
+    <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <span class="ptitle" id="ptitle">Música</span>
+    <button id="pprev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+    <button id="pplay" class="main" aria-label="Reproducir"></button>
+    <button id="pnext" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+    <button id="pmute" aria-label="Silenciar"></button>
+    <input type="range" id="pvol" min="0" max="100" value="30" aria-label="Volumen">
+</div>
+
 <footer>© 2026 Zansumi. Todos los derechos reservados.</footer>
 
 <script>
@@ -389,6 +417,16 @@ document.querySelectorAll('.social img').forEach(function(i){
     function f(){fb(i,'fb',i.dataset.f||'?')}
     i.addEventListener('error',f); if(i.complete&&i.naturalWidth===0)f();
 });
+
+/* banner: si el nombre no coincide, prueba otros comunes */
+(function(){
+    var b=document.getElementById('heroBg');if(!b)return;
+    var alt=['assets/banners/banner.png','assets/banners/baner.png','assets/banners/baner2.jpg','assets/banners/banner.jpg','assets/banners/baner2.webp','assets/banners/banner.webp'],i=0;
+    b.addEventListener('error',function(){
+        if(i<alt.length){b.src=alt[i++]}
+        else{console.warn('No se encontro el banner. Sube la imagen a assets/banners/baner2.png (respeta mayusculas/minusculas)');b.remove()}
+    });
+})();
 
 /* tarjetas sin link todavía no hacen nada */
 document.querySelectorAll('.pcard,.part').forEach(function(a){a.addEventListener('click',function(e){if(a.getAttribute('href')==='#')e.preventDefault()})});
@@ -441,6 +479,69 @@ if(!reduce){
         requestAnimationFrame(loop);
     })();
 }
+})();
+</script>
+<script>
+/* ---------- MUSICA ----------
+   Pon tus canciones en assets/music/ y edita esta lista (titulo y archivo). */
+(function(){
+var tracks=[
+    {t:'Canción 1',s:'assets/music/cancion1.mp3'},
+    {t:'Canción 2',s:'assets/music/cancion2.mp3'},
+    {t:'Canción 3',s:'assets/music/cancion3.mp3'}
+    {t:'Canción 3',s:'assets/music/cancion4.mp3'}
+    {t:'Canción 3',s:'assets/music/cancion5.mp3'}
+    {t:'Canción 3',s:'assets/music/cancion6.mp3'}
+    {t:'Canción 3',s:'assets/music/cancion7.mp3'}
+    {t:'Canción 3',s:'assets/music/cancion8.mp3'}
+    {t:'Canción 3',s:'assets/music/cancion9.mp3'}
+];
+var P=document.getElementById('player'),a=new Audio(),i=0,fails=0,auto=true;
+var T=document.getElementById('ptitle'),bp=document.getElementById('pplay'),bm=document.getElementById('pmute'),v=document.getElementById('pvol');
+var ICON={
+ play:'<svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>',
+ pause:'<svg viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>',
+ vol:'<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9zM16 8a5 5 0 0 1 0 8M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 9v6h4l5 4V5L7 9z"/></svg>',
+ mute:'<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+};
+function sync(){
+    P.classList.toggle('playing',!a.paused);
+    bp.innerHTML=a.paused?ICON.play:ICON.pause;
+    bp.setAttribute('aria-label',a.paused?'Reproducir':'Pausar');
+    bm.innerHTML=(a.muted||a.volume===0)?ICON.mute:ICON.vol;
+}
+function load(n,play){
+    i=(n+tracks.length)%tracks.length;
+    a.src=tracks[i].s;T.textContent=tracks[i].t;
+    if(play)a.play().catch(function(){});
+}
+/* volumen guardado */
+var saved=30;try{var q=localStorage.getItem('zv');if(q!==null)saved=+q}catch(e){}
+v.value=saved;a.volume=saved/100;
+v.addEventListener('input',function(){a.volume=v.value/100;a.muted=false;try{localStorage.setItem('zv',v.value)}catch(e){}sync()});
+bm.addEventListener('click',function(){a.muted=!a.muted;sync()});
+bp.addEventListener('click',function(){auto=false;a.paused?a.play().catch(function(){}):a.pause()});
+document.getElementById('pnext').addEventListener('click',function(){auto=false;load(i+1,true)});
+document.getElementById('pprev').addEventListener('click',function(){auto=false;load(i-1,true)});
+a.addEventListener('play',sync);a.addEventListener('pause',sync);a.addEventListener('volumechange',sync);
+a.addEventListener('ended',function(){load(i+1,true)});
+a.addEventListener('loadedmetadata',function(){fails=0;P.hidden=false;sync()});
+a.addEventListener('error',function(){
+    fails++;
+    if(fails>=tracks.length){P.remove();console.warn('No hay canciones en assets/music/');return}
+    load(i+1,!a.paused||auto);
+});
+/* los navegadores bloquean el audio hasta que la persona interactua: arranca al primer click/tecla */
+function first(e){
+    if(!auto)return;auto=false;
+    ['pointerdown','keydown'].forEach(function(ev){removeEventListener(ev,first,true)});
+    if(e.target.closest&&e.target.closest('#player'))return;
+    a.play().catch(function(){});
+}
+['pointerdown','keydown'].forEach(function(ev){addEventListener(ev,first,true)});
+load(0,false);
+a.play().then(function(){auto=false}).catch(function(){});
+sync();
 })();
 </script>
 </body>
