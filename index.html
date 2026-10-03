@@ -4,778 +4,428 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zansumi | Creator Profile</title>
-
 <link rel="icon" type="image/png" href="assets/avatars/logonwevo2.png">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+:root{
+    --bg:#0c0506; --panel:#170909; --line:rgba(255,255,255,.1);
+    --red:#b3121f; --red-deep:#6e0a12; --red-glow:#ff2a3d;
+    --text:#f4eeee; --muted:#b9a5a6; --radius:16px;
+    --glow:0 0 6px rgba(255,255,255,.9),0 0 18px rgba(255,255,255,.45),0 0 36px rgba(255,42,61,.55);
+    --box-glow:0 0 0 1px rgba(255,255,255,.9),0 0 14px rgba(255,255,255,.5),0 0 34px rgba(255,42,61,.45);
+    --display:'Bricolage Grotesque','Segoe UI',sans-serif;
+    --body:'DM Sans','Segoe UI',sans-serif;
 }
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#0b0b0b;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* NAVBAR */
-
-.navbar{
-    position:fixed;
-    top:0;
-    left:0;
-
-    width:100%;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:18px 40px;
-
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(15px);
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
-    z-index:9999;
-}
-
-.logo{
-    font-size:2rem;
-    font-weight:700;
-}
-
-.nav-links{
-    display:flex;
-    gap:25px;
-}
-
-.nav-links a{
-    color:#d1d1d1;
-    text-decoration:none;
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:white;
-}
-
-/* HERO */
-
-.hero{
-    position:relative;
-
-    width:95%;
-    max-width:1400px;
-
-    height:420px;
-
-    margin:100px auto 20px;
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.hero-content{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:100%;
-
-    text-align:center;
-
-    z-index:10;
-}
-
-.hero-avatar{
-    width:140px;
-    height:140px;
-
-    object-fit:contain;
-
-    border-radius:50%;
-
-    background:#111;
-
-    border:4px solid white;
-}
-
-.hero h1{
-    margin-top:15px;
-    font-size:2.5rem;
-}
-/* MAIN */
-
-main{
-    width:95%;
-    max-width:1400px;
-    margin:auto;
-}
-.hero-banner{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.hero-overlay{
-    position:absolute;
-    inset:0;
-
-    background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,.2),
-        rgba(0,0,0,.85)
-    );
-}
-
-.hero-subtitle{
-    color:#d0d0d0;
-    margin-top:10px;
-}
-
-.hero-badges{
-    margin-top:15px;
-}
-
-.hero-badges span{
-    display:inline-block;
-    padding:8px 14px;
-    margin:5px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
-}
-
-/* SECTION */
-
-.section{
-    background:#151515;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    margin-top:25px;
-
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.section h2{
-    margin-bottom:20px;
-}
-
-/* GRID */
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-/* CARD */
-
-.card{
-    background:#1c1c1c;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-6px);
-}
-
-/* BOTONES */
-
-.btn{
-    display:inline-block;
-
-    text-decoration:none;
-
-    color:black;
-
-    background:white;
-
-    padding:10px 16px;
-
-    border-radius:10px;
-
-    margin:5px;
-
-    transition:.3s;
-}
-
-.btn:hover{
-    background:#ddd;
-}
-
-/* LIVE */
-
-.live-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.stream-card{
-    background:#1c1c1c;
-    border-radius:15px;
-    padding:15px;
-}
-
-.stream-card iframe{
-    width:100%;
-    height:350px;
-    border:none;
-    border-radius:10px;
-}
-
-/* FRIENDS */
-
-.friends-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-.friend-card{
-    text-decoration:none;
-
-    color:white;
-
-    background:#1c1c1c;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    text-align:center;
-}
-
-.friend-card img{
-    width:90px;
-    height:90px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    margin-bottom:10px;
-}
-
-/* PORTFOLIO */
-
-.portfolio-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
-
-.portfolio-card{
-    overflow:hidden;
-
-    background:#1c1c1c;
-
-    border-radius:20px;
-}
-
-.portfolio-card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-
-.portfolio-card h3{
-    padding:15px 15px 0;
-}
-
-.portfolio-card p{
-    padding:15px;
-    color:#bdbdbd;
-}
-
-/* FOOTER */
-
-footer{
-    text-align:center;
-    padding:50px;
-    color:#888;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1000px){
-
-    .live-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:768px){
-
-    .navbar{
-        flex-direction:column;
-        gap:15px;
-    }
-
-    .nav-links{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .hero{
-        height:420px;
-    }
-
-    .hero-avatar{
-        width:130px;
-        height:130px;
-    }
-
-    .hero h1{
-        font-size:2rem;
-    }
-
-}
-.team-card{
-    display:flex;
-    gap:25px;
-    align-items:center;
-}
-
-.team-logo{
-    width:120px;
-    height:120px;
-    object-fit:contain;
-}
-
-.small{
-    color:#bdbdbd;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* ---------- FONDO ANIMADO ---------- */
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg)}
+.bg::after{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 80%);
+    animation:grid 12s linear infinite}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
+.orb.a{width:520px;height:520px;background:var(--red-deep);top:-120px;left:-100px;animation:d1 18s ease-in-out infinite alternate}
+.orb.b{width:460px;height:460px;background:var(--red);top:35%;right:-140px;opacity:.38;animation:d2 22s ease-in-out infinite alternate}
+.orb.c{width:420px;height:420px;background:var(--red-deep);bottom:-140px;left:30%;animation:d3 26s ease-in-out infinite alternate}
+#embers{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.cursor{position:fixed;left:0;top:0;width:360px;height:360px;margin:-180px 0 0 -180px;border-radius:50%;pointer-events:none;z-index:-1;
+    background:radial-gradient(circle,rgba(255,42,61,.22),transparent 65%);transition:transform .12s linear}
+@keyframes d1{to{transform:translate(240px,170px)}}
+@keyframes d2{to{transform:translate(-280px,-130px)}}
+@keyframes d3{to{transform:translate(-220px,-150px)}}
+@keyframes grid{to{background-position:64px 64px}}
+@keyframes flicker{0%,100%{opacity:1}90%{opacity:1}91%{opacity:.7}92%{opacity:1}95%{opacity:.82}}
+@keyframes sweep{to{transform:translateX(280%) skewX(-20deg)}}
+@keyframes spin{to{--a:360deg}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 10px rgba(255,255,255,.25)}50%{box-shadow:0 0 22px rgba(255,255,255,.6),0 0 40px rgba(255,42,61,.5)}}
+@keyframes wiggle{0%,100%{rotate:0deg}25%{rotate:-10deg}75%{rotate:10deg}}
+
+/* ---------- NAV ---------- */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:100;display:flex;justify-content:center;align-items:center;gap:40px;
+    padding:14px 24px;background:rgba(12,5,6,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--display);font-weight:800;font-size:1.35rem;text-shadow:var(--glow)}
+.nav-links{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+.nav-links a{position:relative;text-decoration:none;color:var(--muted);font-size:.95rem;transition:color .25s,text-shadow .25s,transform .25s}
+.nav-links a::after{content:"";position:absolute;left:50%;bottom:-3px;width:0;height:2px;background:#fff;box-shadow:0 0 8px #fff,0 0 16px var(--red-glow);transition:width .3s,left .3s}
+.nav-links a:hover{color:#fff;text-shadow:var(--glow);transform:translateY(-2px)}
+.nav-links a:hover::after{width:100%;left:0}
+
+/* ---------- LAYOUT ---------- */
+main{width:92%;max-width:1100px;margin:0 auto;padding-bottom:20px}
+.section{margin-top:96px;text-align:center}
+.section h2{font-family:var(--display);font-size:2rem;font-weight:700;margin-bottom:38px;text-shadow:var(--glow);animation:flicker 7s infinite}
+.section h2::after{content:"";display:block;width:56px;height:3px;border-radius:3px;background:#fff;box-shadow:0 0 10px #fff,0 0 22px var(--red-glow);margin:14px auto 0;transition:width .5s}
+.section:hover h2::after{width:120px}
+
+/* reveal al hacer scroll */
+.js .rv{opacity:0;translate:0 36px;transition:opacity .7s ease,translate .7s cubic-bezier(.2,.9,.3,1.2);transition-delay:calc(var(--i,0)*70ms)}
+.js .rv.in{opacity:1;translate:0 0}
+
+/* ---------- HERO ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 20px 50px}
+.hero{position:relative;overflow:hidden}
+.hero>*{position:relative;z-index:1}
+.hero>.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.5;
+    -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
+.hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(12,5,6,.65))}
+.ring{position:relative;width:156px;height:156px;display:grid;place-items:center;animation:bob 4s ease-in-out infinite}
+.ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--a),transparent 30%,#fff,var(--red-glow),transparent 80%);animation:spin 2.4s linear infinite;filter:blur(1px)}
+.hero-avatar{position:relative;width:142px;height:142px;border-radius:50%;object-fit:contain;background:#0c0506;border:3px solid #0c0506}
+.hero h1{font-family:var(--display);font-size:clamp(3.2rem,10vw,6rem);font-weight:800;margin-top:26px;line-height:1;text-shadow:var(--glow);animation:flicker 6s infinite}
+.hero-subtitle{color:var(--muted);margin-top:14px;font-size:1.1rem}
+.badges{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.badges span{padding:6px 16px;border-radius:999px;font-size:.9rem;border:1px solid rgba(255,255,255,.6);background:rgba(179,18,31,.2);animation:pulse 3s ease-in-out infinite;transition:transform .25s}
+.badges span:nth-child(2){animation-delay:.5s}.badges span:nth-child(3){animation-delay:1s}
+.badges span:hover{transform:scale(1.1) rotate(-2deg)}
+
+/* ---------- REDES (pon tus iconos en assets/icons/) ---------- */
+.socials{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.social{width:58px;height:58px;display:grid;place-items:center;border-radius:16px;border:1px solid rgba(255,255,255,.7);text-decoration:none;
+    background:rgba(23,9,9,.7);box-shadow:0 0 10px rgba(255,255,255,.18);transition:transform .3s cubic-bezier(.3,1.7,.5,1),box-shadow .3s,background .3s}
+.social img{width:30px;height:30px;object-fit:contain;transition:transform .3s}
+.social .fb{font-family:var(--display);font-weight:800;font-size:1.3rem;text-shadow:0 0 8px #fff}
+.social:hover{transform:translateY(-8px) scale(1.15);background:var(--red-deep);box-shadow:var(--box-glow)}
+.social:hover img,.social:hover .fb{animation:wiggle .5s}
+.social:active{transform:scale(.9)}
+
+/* contadores */
+.counters{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:38px}
+.counter{min-width:150px;padding:14px 22px;border-radius:14px;background:var(--panel);border:1px solid var(--line);transition:transform .3s,border-color .3s,box-shadow .3s}
+.counter:hover{transform:translateY(-5px) scale(1.05);border-color:#fff;box-shadow:var(--box-glow)}
+.counter strong{display:block;font-family:var(--display);font-size:2rem;line-height:1.1;text-shadow:var(--glow)}
+.counter span{color:var(--muted);font-size:.9rem}
+
+/* ---------- BORDE ANIMADO COMPARTIDO ---------- */
+.fx{position:relative}
+.fx::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:2px;pointer-events:none;opacity:0;transition:opacity .3s;
+    background:conic-gradient(from var(--a),transparent 55%,#fff,var(--red-glow),transparent);animation:spin 2s linear infinite;
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.fx:hover::before{opacity:1}
+
+/* ---------- BOTONES ---------- */
+.btn{position:relative;overflow:hidden;display:inline-block;text-decoration:none;color:#fff;margin-top:16px;padding:11px 26px;border-radius:12px;
+    border:1px solid #fff;background:rgba(179,18,31,.3);text-shadow:0 0 8px #fff;animation:pulse 3s ease-in-out infinite;
+    transition:transform .25s cubic-bezier(.3,1.7,.5,1),background .25s}
+.btn::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg)}
+.btn:hover{transform:translateY(-4px) scale(1.06);background:var(--red)}
+.btn:hover::before{animation:sweep .7s}
+.btn:active{transform:scale(.94)}
+
+/* ---------- TARJETAS ---------- */
+.grid{display:grid;gap:20px}
+.c2{grid-template-columns:repeat(2,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 20px;display:flex;flex-direction:column;align-items:center;transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 0 22px rgba(255,255,255,.15)}
+.card h3{font-family:var(--display);font-size:1.15rem;margin-bottom:6px;text-shadow:0 0 8px rgba(255,255,255,.6)}
+.card p{color:var(--muted);font-size:.95rem}
+.proj-logo{width:120px;height:120px;object-fit:contain;margin-bottom:16px;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.card:hover .proj-logo{transform:scale(1.12) rotate(-4deg)}
+
+/* ---------- LIVE ---------- */
+.stream{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;transition:transform .3s}
+.stream:hover{transform:translateY(-4px)}
+.stream h3{font-family:var(--display);margin-bottom:12px;text-shadow:0 0 8px rgba(255,255,255,.6)}
+.stream iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px;background:#000}
+
+/* ---------- PORTFOLIO ---------- */
+.pgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.pcard{flex:0 1 calc(25% - 15px);min-width:220px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-align:center;
+    transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .15s ease-out,box-shadow .3s}
+.pcard{display:block;text-decoration:none;color:inherit;cursor:pointer}
+.thumb{position:relative}
+.thumb::after{content:"Ver proyecto";position:absolute;left:50%;bottom:12px;translate:-50% 20px;opacity:0;padding:6px 16px;border-radius:999px;font-size:.82rem;background:var(--red);border:1px solid #fff;box-shadow:var(--box-glow);transition:opacity .3s,translate .3s cubic-bezier(.3,1.6,.5,1)}
+.pcard:hover .thumb::after{opacity:1;translate:-50% 0}
+.pcard:active{scale:.97}
+.pcard:hover{box-shadow:0 0 24px rgba(255,255,255,.2)}
+.thumb{aspect-ratio:16/10;background:radial-gradient(circle at 50% 40%,#2a0d10,#0c0506);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:contain;padding:14px;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.pcard:hover .thumb img{transform:scale(1.12)}
+.mark{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.6rem;border:2px solid #fff;box-shadow:var(--box-glow);text-shadow:0 0 8px #fff}
+.pcard h3{font-family:var(--display);font-size:1.05rem;padding:16px 14px 0;text-shadow:0 0 8px rgba(255,255,255,.55)}
+.pcard p{color:var(--muted);font-size:.9rem;padding:6px 14px 0}
+.pcard .by{font-size:.82rem;color:#f0c4c8;padding:6px 14px 18px}
+
+/* ---------- AMIGOS ---------- */
+.friend{text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s}
+.friend img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 0 10px rgba(255,255,255,.4);transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.friend h3{font-family:var(--display);font-size:1.05rem;text-shadow:0 0 8px rgba(255,255,255,.55)}
+.friend:hover{transform:translateY(-8px) scale(1.04);box-shadow:0 0 24px rgba(255,255,255,.2)}
+.friend:hover img{transform:scale(1.12) rotate(6deg)}
+.friend:active{transform:scale(.95)}
+
+/* ---------- SOBRE MI / TECH / SETUP ---------- */
+.about-text{max-width:640px;margin:0 auto;color:var(--muted);font-size:1.1rem}
+.about-text p+p{margin-top:14px}
+.roles{margin-top:30px;display:flex;flex-direction:column;align-items:center}
+.roles strong{font-family:var(--display);font-size:1.15rem;text-shadow:var(--glow)}
+.role-links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.sub{font-family:var(--display);font-size:1.3rem;margin-bottom:20px;text-shadow:0 0 8px rgba(255,255,255,.6)}
+.part{display:block;text-decoration:none;color:inherit;flex:0 1 calc(20% - 16px);min-width:180px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-align:center;padding-bottom:16px;transition:transform .3s cubic-bezier(.3,1.6,.5,1),box-shadow .3s}
+.part:hover{transform:translateY(-8px) scale(1.04);box-shadow:0 0 24px rgba(255,255,255,.2)}
+.part:active{scale:.96}
+.part .thumb{aspect-ratio:4/3}
+.part .thumb::after{content:"Ver en tienda"}
+.part:hover .thumb::after{opacity:1;translate:-50% 0}
+.part .lbl{display:block;color:#f0c4c8;font-size:.8rem;padding:14px 12px 0}
+.part h3{font-family:var(--display);font-size:1rem;padding:4px 12px 0;text-shadow:0 0 8px rgba(255,255,255,.55)}
+.part p{color:var(--muted);font-size:.85rem;padding:2px 12px 0}
+.part:hover .thumb img{transform:scale(1.12)}
+.parts .mark{font-size:1.8rem}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:12px;width:max-content;animation:marquee 28s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{padding:10px 22px;border-radius:999px;background:var(--panel);border:1px solid rgba(255,255,255,.35);white-space:nowrap;transition:transform .25s,background .25s,box-shadow .25s}
+.track span:hover{transform:scale(1.18);background:var(--red);box-shadow:var(--box-glow)}
+.spec{align-items:flex-start;text-align:left}
+.spec strong{font-family:var(--display);font-size:.95rem;margin-bottom:4px;text-shadow:0 0 8px #fff}
+.spec p{color:var(--text)}
+
+footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9rem}
+
+@media(max-width:1000px){.pcard{flex-basis:calc(33.33% - 14px)}}
+@media(max-width:900px){.c4{grid-template-columns:repeat(2,1fr)}.c2{grid-template-columns:1fr}.pcard{flex-basis:calc(50% - 10px)}}
+@media(max-width:600px){.navbar{flex-direction:column;gap:8px;padding:12px}.nav-links{gap:16px}.hero{padding-top:150px}.c4{grid-template-columns:1fr}.pcard{flex-basis:100%}.section{margin-top:70px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.js .rv{opacity:1;translate:0 0}}
 </style>
-
 </head>
 <body>
 
-
-<!-- NAVBAR -->
+<div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+<canvas id="embers" aria-hidden="true"></canvas>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <nav class="navbar">
-
-    <div class="logo">
-        Zansumi
-    </div>
-
+    <div class="logo">Zansumi</div>
     <div class="nav-links">
-        <a href="#setup">Setup</a>
-        <a href="#portfolio">Portfolio</a>
+        <a href="#about">Sobre mí</a>
         <a href="#live">Live</a>
-        <a href="#projects">Proyectos</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#lmc">LMC</a>
+        <a href="#friends">Friends</a>
+        <a href="#setup">Setup</a>
     </div>
-
 </nav>
 
-<!-- BANNER -->
+<!-- HERO -->
+<header class="hero">
+    <!-- BANNER DE FONDO (16:9, ej. 1920x1080): assets/banners/baner2.png -->
+    <img class="hero-bg" src="assets/banners/baner2.png" alt="" onerror="this.remove()">
+    <div class="ring"><img src="assets/avatars/logonwevo2.png" class="hero-avatar" alt="Logo de Zansumi"></div>
+    <h1>Zansumi</h1>
+    <p class="hero-subtitle">Minecraft Server Developer y creador de contenido</p>
+    <div class="badges"><span>Creador de contenido</span><span>Developer</span></div>
 
-<section class="hero">
-
-    <img src="assets/banners/baner2.png" class="hero-banner">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <img src="assets/avatars/logonwevo2.png" class="hero-avatar">
-
-        <h1>Zansumi</h1>
-
-        <p class="hero-subtitle">
-            Minecraft Server Developer • Content Creator
-        </p>
-
-        <div class="hero-badges">
-            <span>Creador de Contenido</span>
-            <span>Developer</span>
-            <span>Founder Team LMC</span>
-        </div>
-
+    <!-- REDES: cambia el src de cada imagen por tu icono en assets/icons/ -->
+    <div class="socials">
+        <a class="social" target="_blank" rel="noopener" href="https://www.youtube.com/@Zansumii/videos" aria-label="YouTube" title="YouTube"><img src="assets/avatars/logo yt.png" alt="YouTube" data-f="Y"></a>
+        <a class="social" target="_blank" rel="noopener" href="https://www.twitch.tv/zansumi" aria-label="Twitch" title="Twitch"><img src="assets/avatars/twicht logo.png" alt="Twitch" data-f="T"></a>
+        <a class="social" target="_blank" rel="noopener" href="https://kick.com/zansumi" aria-label="Kick" title="Kick"><img src="assets/avatars/kick.png" alt="Kick" data-f="K"></a>
+        <a class="social" target="_blank" rel="noopener" href="https://www.tiktok.com/@zansum1" aria-label="TikTok" title="TikTok"><img src="assets/avatars/tiktok logo.png" alt="TikTok" data-f="Tk"></a>
+        <a class="social" target="_blank" rel="noopener" href="https://www.instagram.com/zansum1" aria-label="Instagram" title="Instagram"><img src="assets/avatars/instagram-logo-png_seeklogo-306452.png" alt="Instagram" data-f="I"></a>
+        <a class="social" target="_blank" rel="noopener" href="https://steamcommunity.com/id/Zansumi/" aria-label="Steam" title="Steam"><img src="assets/avatars/steam.png" alt="Steam" data-f="S"></a>
+        <a class="social" target="_blank" rel="noopener" href="https://discord.gg/5TMKAJQazG" aria-label="Discord" title="Discord"><img src="assets/avatars/discord.png" alt="Discord" data-f="D"></a>
     </div>
 
-</section>
+    <div class="counters">
+        <div class="counter"><strong><span data-count="1200">0</span>+</strong><span>Suscriptores en YouTube</span></div>
+        <div class="counter"><strong><span data-count="490">0</span>+</strong><span>Seguidores en Twitch</span></div>
+        <div class="counter"><strong><span data-count="140">0</span>+</strong><span>Seguidores en Kick</span></div>
+    </div>
+</header>
 
 <main>
 
-<section class="section" id="about">
-    <section class="section" id="about">
-
-    <h2>Sobre Mí</h2>
-
-    <p>
-        Soy Zansumi, creador de contenido y desarrollador de
-        servidores de Minecraft de México.
-
-        Me especializo en la creación de experiencias para
-        comunidades, sistemas personalizados, optimización
-        de servidores y proyectos enfocados en Minecraft.
-
-        También soy fundador de Team LMC, una organización
-        enfocada en la creación de contenido, eventos y
-        proyectos para la comunidad.
-    </p>
-
-</section>
-
-    </div>
-
-    <!-- LINKS -->
-    <section class="section" id="links">
-
-        <h2>Links</h2>
-        
-        <a class="btn" target="_blank" href="https://www.youtube.com/@Zansumii/videos">YouTube @Zansumii</a>
-
-        <a class="btn" target="_blank" href="https://www.twitch.tv/zansumi">Twitch @zansumi</a>
-
-        <a class="btn" target="_blank" href="https://kick.com/zansumi">Kick @zansumi</a>
-
-        <a class="btn" target="_blank" href="https://www.tiktok.com/@zansum1">TikTok @zansum1</a>
-
-        <a class="btn" target="_blank" href="https://steamcommunity.com/id/Zansumi/">Steam @Zansumi</a>
-
-        <a class="btn" target="_blank" href="https://discord.gg/9pQ4MXj7">Discord @Zansumi</a>
-
-        <a class="btn" target="_blank" href="https://www.instagram.com/zansum1">Instagram @zansum1</a>
-
-
+    <!-- SOBRE MI -->
+    <section class="section rv" id="about" style="margin-top:0">
+        <h2>Sobre mí</h2>
+        <div class="about-text">
+            <p>¡Hola! Soy Zansumi, creador de contenido de México. Hago streams, armo eventos de Minecraft para la comunidad y me encanta desarrollar servidores: configurarlos, optimizarlos y darles su toque personalizado.</p>
+            <p>También me gusta ponerle cara a cada proyecto con logos, banners y flyers, y ayudar a que más gente lo conozca. Siempre ando buscando mejorar y aprender cosas nuevas.</p>
+        </div>
+        <div class="roles">
+            <strong>Founder &amp; Community Manager</strong>
+            <div class="role-links">
+                <a class="btn" target="_blank" rel="noopener" href="https://x.com/team__lmc">Team LMC ™</a>
+                <a class="btn" target="_blank" rel="noopener" href="https://x.com/lmcstudi0s">LMC Studios ™</a>
+            </div>
+        </div>
     </section>
 
-    <section class="section">
-
-    <h2>Creator Stats</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>YouTube</h3>
-            <p>1000+ Suscriptores</p>
+    <!-- LIVE -->
+    <section class="section" id="live">
+        <h2 class="rv">Live</h2>
+        <div class="grid c2">
+            <div class="stream rv"><h3>Twitch</h3>
+                <iframe src="https://player.twitch.tv/?channel=zansumi&parent=zansumilmc.github.io" allowfullscreen title="Twitch de Zansumi"></iframe></div>
+            <div class="stream rv" style="--i:1"><h3>Kick</h3>
+                <iframe src="https://player.kick.com/zansumi" allowfullscreen title="Kick de Zansumi"></iframe></div>
         </div>
-
-        <div class="card">
-            <h3>Twitch</h3>
-            <p>400+</p>
-        </div>
-
-        <div class="card">
-            <h3>Kick</h3>
-            <p>50+</p>
-        </div>
-
-    </div>
-</section>
-
-<section class="section" id="live">
-
-    <h2>Live Status</h2>
-
-    <div class="live-grid">
-
-        <!-- Twitch -->
-        <div class="stream-card">
-
-            <h3>Twitch</h3>
-
-            <iframe
-                src="https://player.twitch.tv/?channel=zansumi&parent=zansumilmc.github.io"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-        <!-- Kick -->
-        <div class="stream-card">
-
-            <h3>Kick</h3>
-
-            <iframe
-                src="https://kick.com/zansumi">
-            </iframe>
-
-        </div>
-
-    </div>
-
-
-</section>
-
-<section class="section" id="projects">
-
-    <h2>Proyectos Destacados</h2>
-
-    <div class="grid">
-
-        <div class="card">
-
-        <img class="team-logo"
-        src="assets/avatars/BLOGOLMC2.png"
-        alt="Team LMC">
-
-        <h3>Team LMC</h3>
-
-        <p>Comunidad y organización de contenido.</p>
-
-        <a class="btn"
-        target="_blank"
-        href="https://zansumilmc.github.io/TeamLMC2/">
-         Página Oficial
-        </a>
-
-        </div>
-
-        <div class="card">
-
-        <img class="team-logo"
-        src="assets/avatars/Miniatura de YouTube podcast minimalista azul.png"
-        alt="Team LMC">
-
-        <h3>LMC Podcast</h3>
-        <p>Podcast enfocado en Minecraft y gaming.</p>
-
-        <a class="btn"
-        target="_blank"
-         href="https://www.youtube.com/watch?v=_JusN39_3Ys&list=PL3zAYZVqJ8nMtsujlGd0pAYPhXcW8CA1N">
-        Episodios en YouTube
-        </a>
-
-        </div>
-
-        <div class="card">
-
-        <img class="team-logo"
-        src="assets/avatars/lmcstudios.png"
-        alt="Team LMC">
-
-        <h3>LMC Studios</h3>
-
-        <p>Estudio de desarrollo creacion de eventos en Minecraft.</p>
-
-        <a class="btn"
-        target="_blank"
-        href="https://zansumilmc.github.io/LMC-STUDIOS/">
-        Página Oficial
-        </a>
-
-        </div>
-
-    </div>
-
     </section>
 
-   <section class="section" id="friends">
-
-    <h2>Friends</h2>
-
-    <div class="friends-grid">
-
-        <a href="https://www.tiktok.com/@rayzz.21_" class="friend-card">
-
-            <img src="assets/avatars/razz.png">
-
-            <h3>RootRaYzZ</h3>
-
-        </a>
-
-        <a href="https://www.youtube.com/@zFRIXZ" class="friend-card">
-
-            <img src="assets/avatars/zfrixz.png">
-
-            <h3>zFrixz</h3>
-
-        </a>
-
-        <a href="https://www.twitch.tv/iwanhx" class="friend-card">
-
-            <img src="assets/avatars/iwan.png">
-
-            <h3>IwanHX</h3>
-
-        </a>
-
-        <a href="https://kick.com/theandreuspr" class="friend-card">
-
-            <img src="assets/avatars/andreus.png">
-
-            <h3>TheAndreusPR</h3>
-
-        </a>
-
-    </div>
-
-</section>
-
+    <!-- PORTFOLIO -->
     <section class="section" id="portfolio">
-
-    <h2>Minecraft Development Portfolio</h2>
-
-    <div class="portfolio-grid">
-
-        <div class="portfolio-card">
-
-            <img src="assets/avatars/logo.png">
-
-            <h3>LMC Proyect</h3>
-
-            <p>
-                Desarrollo de sistemas,
-                eventos y configuraciones.
-            </p>
-
+        <h2 class="rv">Minecraft Development Portfolio</h2>
+        <!-- PORTFOLIO: cambia href="#" de cada tarjeta por tu link -->
+        <div class="pgrid">
+            <a class="pcard fx rv" href="https://www.tiktok.com/@zanfrix_network" target="_blank" rel="noopener" style="--i:0"><div class="thumb"><img src="assets/avatars/zanfrixz.png" alt="" data-m="Z"></div><h3>ZanFirxz Network</h3><p>Configuré el server y ayudé con la promo.</p><p class="by">by zFrixz, Zansumi</p></a>
+            <a class="pcard fx rv" href="https://www.tiktok.com/@sumixcraft" target="_blank" rel="noopener" style="--i:1"><div class="thumb"><img src="assets/avatars/sm.png" alt="" data-m="S"></div><h3>SumixCraft</h3><p>Configuré el server y ayudé con la promo.</p><p class="by">by zFrixz</p></a>
+            <a class="pcard fx rv" href="https://www.twitch.tv/videos/2673904387" target="_blank" rel="noopener" style="--i:2"><div class="thumb"><img src="assets/avatars/oshanzumi.png" alt="" data-m="O"></div><h3>OshanZumi</h3><p>Optimicé y configuré el server, hice la promo y diseñé logos y banners.</p><p class="by">by Oshawott, Zansumi</p></a>
+            <a class="pcard fx rv" href="https://www.tiktok.com/@alicia_usu/video/7598013922939112716" target="_blank" rel="noopener" style="--i:3"><div class="thumb"><img src="assets/avatars/logo2he.png" alt="" data-m="H"></div><h3>Hardcore Of Elite</h3><p>Optimicé y configuré el server, hice la promo y diseñé logos y banners.</p><p class="by">by Alicia_usu</p></a>
+            <a class="pcard fx rv" href="https://x.com/Andreuspf/status/2033276977755377756" target="_blank" rel="noopener" style="--i:0"><div class="thumb"><img src="assets/avatars/a (1).png" alt="" data-m="E"></div><h3>EXODO SMP</h3><p>Eché la mano con la configuración básica.</p><p class="by">by Zansumi</p></a>
+            <a class="pcard fx rv" href="https://x.com/team__lmc/status/2038030653686501456" target="_blank" rel="noopener" style="--i:1"><div class="thumb"><img src="assets/avatars/TEAM LMC NEW - 2026.png" alt="" data-m="R"></div><h3>Team LMCraft Roleplay</h3><p>Optimicé y configuré el server, hice la promo y diseñé logos, gráficos y banners.</p><p class="by">by LMC Studios™</p></a>
+            <a class="pcard fx rv" href="https://x.com/LMCStudi0s/status/2049005507633979520" target="_blank" rel="noopener" style="--i:2"><div class="thumb"><img src="assets/avatars/logo.png" alt="" data-m="L"></div><h3>LMC Project</h3><p>Optimicé y configuré el server, hice la promo y diseñé logos, gráficos y banners.</p><p class="by">by LMC Studios™</p></a>
+            <a class="pcard fx rv" href="https://www.youtube.com/watch?v=ehaIvwu6S5o" target="_blank" rel="noopener" style="--i:3"><div class="thumb"><img src="assets/avatars/image-removebg-preview_4.png" alt="" data-m="S"></div><h3>Skyblock de los Panas</h3><p>Optimicé y configuré el server, hice la promo y diseñé logos, gráficos y banners.</p><p class="by">by TheAndreusPR</p></a>
+            <a class="pcard fx rv" href="https://x.com/DeadLandsSMP/status/2055123133535867182" target="_blank" rel="noopener" style="--i:0"><div class="thumb"><img src="assets/avatars/COMISION_ANDREUS_WASA.png" alt="" data-m="D"></div><h3>DeadLands SMP</h3><p>Ayudé a configurar el server.</p><p class="by">by TheAndreusPR</p></a>
+            <a class="pcard fx rv" href="https://x.com/LMCStudi0s/status/2057556127861129547" target="_blank" rel="noopener" style="--i:1"><div class="thumb"><img src="assets/avatars/pedaafio2026.png" alt="" data-m="P"></div><h3>PEDSAFIO</h3><p>Ayudé con la promo en redes y diseñé logos, gráficos y banners.</p><p class="by">by LMC Studios™, Axolotl Studios</p></a>
+            <a class="pcard fx rv" href="https://x.com/Andreuspf/status/2073634084044120107" target="_blank" rel="noopener" style="--i:2"><div class="thumb"><img src="assets/avatars/destruyeelnexus.png" alt="" data-m="N"></div><h3>Destruye el Nexus</h3><p>Ayudé con la promo en redes desde LMC Studios, mi estudio.</p><p class="by">by TheAndreusPR</p></a>
+            <a class="pcard fx rv" href="https://x.com/LMCStudi0s/status/2082207789443604546" target="_blank" rel="noopener" style="--i:3"><div class="thumb"><img src="assets/avatars/buildbate.png" alt="" data-m="B"></div><h3>LMC Battles</h3><p>Ayudé con la promo en redes desde LMC Studios, mi estudio.</p><p class="by">by TheAndreusPR</p></a>
+            <a class="pcard fx rv" href="https://x.com/LMCStudi0s/status/2105026597166125064" target="_blank" rel="noopener" style="--i:0"><div class="thumb"><img src="assets/avatars/zoulcraft.png" alt="" data-m="Z"></div><h3>ZoulCraft</h3><p>Optimicé y configuré el server, hice la promo en redes desde LMC Studios y diseñé logos, banners y flyers.</p><p class="by">by LMC Studios™, yDaantiX</p></a>
         </div>
-
-        <div class="portfolio-card">
-
-            <img src="assets/avatars/pedaafio2026.png">
-
-            <h3>Pedsafio</h3>
-
-            <p>
-                Promocion y branding para el evento de Minecraft
-            </p>
-
-        </div>
-
-        <div class="portfolio-card">
-
-            <img src="assets/avatars/image-removebg-preview_4.png">
-
-            <h3>SkyBlock</h3>
-
-            <p>
-            Mapa y diseño de experiencia para el modo de juego SkyBlock.
-            </p>
-
-        </div>
-
-          <div class="portfolio-card">
-
-            <img src="assets/avatars/logo2he.png">
-
-            <h3>Harcorde of elite</h3>
-
-            <p>
-            Survival custom con boses y sistema de niveles semi vanilla "plugins"
-            </p>
-
-        </div>
-
-          <div class="portfolio-card">
-
-            <img src="assets/avatars/COMISION_ANDREUS_WASA.png">
-
-            <h3>DeadLands SMP</h3>
-
-            <p>
-            Servidor SMP con mods y plugins, eventos boses ,misiones, roleplay y más.
-            </p>
-
-        </div>
-
-    </div>
-
-    <section class="section" id="Tech">
-
-    <h2>Tecnologías</h2>
-
-    <div class="grid">
-
-        <div class="card">JavaScript</div>
-        <div class="card">YAML</div>
-        <div class="card">JSON</div>
-        <div class="card">PlaceholderAPI</div>
-        <div class="card">Vault</div>
-        <div class="card">LuckPerms</div>
-        <div class="card">EssentialsX</div>
-        <div class="card">WorldEdit</div>
-        <div class="card">WorldGuard</div>
-        <div class="card">Citizens</div>
-        <div class="card">Mohist</div>
-        <div class="card">PaperMC</div>
-
-    </div>
-
     </section>
 
-    <!-- SETUP -->
-    <section class="section" id="setup">
+        <!-- TECH -->
+    <section class="section" id="tech">
+        <h2 class="rv">Tecnologías utilizadas para los servidores anteriores</h2>
+        <div class="marquee rv"><div class="track" id="track">
+            <span>JavaScript</span><span>YAML</span><span>JSON</span><span>PlaceholderAPI</span><span>Vault</span><span>LuckPerms</span>
+            <span>EssentialsX</span><span>WorldEdit</span><span>WorldGuard</span><span>Citizens</span><span>Mohist</span><span>PaperMC</span>
+        </div></div>
+    </section>
 
-        <h2>🖥 Gaming Setup & PC Hardware</h2>
 
-        <div class="grid">
-
-            <div class="card">
-                <strong>Motherboard</strong>
-                <p>MSI B450-A Pro Max</p>
+    <!-- LMC -->
+    <section class="section" id="lmc">
+        <h2 class="rv">Fundador</h2>
+        <div class="grid c2">
+            <div class="card fx rv">
+                <img class="proj-logo" src="assets/avatars/BLOGOLMC2.png" alt="Team LMC">
+                <h3>Team LMC</h3><p>Comunidad y creacion de contenido.</p>
+                <a class="btn" target="_blank" rel="noopener" href="https://zansumilmc.github.io/TeamLMC2/">Página oficial</a>
             </div>
-
-            <div class="card">
-                <strong>CPU</strong>
-                <p>AMD Ryzen 5 4600G</p>
+            <div class="card fx rv" style="--i:1">
+                <img class="proj-logo" src="assets/avatars/lmcstudios.png" alt="LMC Studios">
+                <h3>LMC Studios</h3><p>Estudio de desarrollo y eventos en Minecraft.</p>
+                <a class="btn" target="_blank" rel="noopener" href="https://zansumilmc.github.io/LMC-STUDIOS/">Página oficial</a>
             </div>
-
-            <div class="card">
-                <strong>GPU</strong>
-                <p>AMD Radeon RX 580 8GB</p>
-            </div>
-
-            <div class="card">
-                <strong>SSD</strong>
-                <p>Team Group GX2 512GB</p>
-            </div>
-
-            <div class="card">
-                <strong>RAM</strong>
-                <p>Kingston Fury Beast RGB DDR4 16GB</p>
-            </div>
-
-            <div class="card">
-                <strong>Monitor Principal</strong>
-                <p>X250GF18 25" 180Hz IPS</p>
-            </div>
-
-            <div class="card">
-                <strong>Monitor Secundario</strong>
-                <p>QTouch 24" Full HD 75Hz</p>
-            </div>
-
-            <div class="card">
-                <strong>Mouse</strong>
-                <p>Yeyian Series 2000</p>
-            </div>
-
         </div>
-</section>
+    </section>
 
+    <!-- FRIENDS -->
+    <section class="section" id="friends">
+        <h2 class="rv">Friends</h2>
+        <div class="grid c4">
+            <a href="https://www.tiktok.com/@rayzz.21_" target="_blank" rel="noopener" class="friend fx rv" style="--i:0"><img src="assets/avatars/razz.png" alt=""><h3>RootRaYzZ</h3></a>
+            <a href="https://guns.lol/zfrixz" target="_blank" rel="noopener" class="friend fx rv" style="--i:1"><img src="assets/avatars/zfrixz.png" alt=""><h3>zFrixz</h3></a>
+            <a href="https://www.twitch.tv/iwanhx" target="_blank" rel="noopener" class="friend fx rv" style="--i:2"><img src="assets/avatars/iwan.png" alt=""><h3>IwanHX</h3></a>
+            <a href="https://kick.com/theandreuspr" target="_blank" rel="noopener" class="friend fx rv" style="--i:3"><img src="assets/avatars/andreus.png" alt=""><h3>TheAndreusPR</h3></a>
+        </div>
+    </section>
+
+    <!-- SETUP: cambia href="#" por el link de la tienda y pon tus fotos en assets/setup/ -->
+    <section class="section" id="setup">
+        <h2 class="rv">Gaming Setup</h2>
+        <h3 class="sub rv">PC</h3>
+        <div class="pgrid parts">
+            <a class="part fx rv" style="--i:0" href="https://www.mercadolibre.com.mx/amd-ryzen-5-4600g-6-core-12-thread-processor/p/MLM2093441754" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/cpu.png" alt="" data-m="🧠"></div><span class="lbl">Procesador</span><h3>AMD Ryzen 5 4600G</h3><p>&nbsp;</p></a>
+            <a class="part fx rv" style="--i:1" href="https://latam.msi.com/Motherboard/B450M-A-PRO-MAX-II" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/moder.png" alt="" data-m="🔌"></div><span class="lbl">Placa madre</span><h3>MSI B450 A PRO MAX</h3><p>&nbsp;</p></a>
+            <a class="part fx rv" style="--i:2" href="https://www.cyberpuerta.mx/Computo-Hardware/Memorias-RAM-y-Flash/Memorias-RAM-para-PC/Memoria-RAM-Kingston-ValueRAM-DDR4-3200MHz-8GB-CL22-Verde.html" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/ram.png" alt="" data-m="⚡"></div><span class="lbl">Memoria RAM</span><h3>8 GB DDR4</h3><p>3200 MHz</p></a>
+            <a class="part fx rv" style="--i:3" href="https://www.amazon.com.mx/Team-T253X6512G0C101-Unidad-interna-estado/dp/B08K3NP2LK" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/alma.png" alt="" data-m="💾"></div><span class="lbl">Almacenamiento</span><h3>Team Group GX2</h3><p>SSD 500 GB</p></a>
+            <a class="part fx rv" style="--i:0" href="https://www.amazon.com.mx/Tarjeta-Gr%C3%A1fica-Ventiladores-Refrigeraci%C3%B3n-Computadora/dp/B0BP7CX8DR?source=ps-sl-shoppingads-lpcontext&psc=1&smid=A3AJC7HAKFC86W" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/gpu.png" alt="" data-m="🎮"></div><span class="lbl">Tarjeta gráfica</span><h3>SOYO Radeon RX 580</h3><p>8 GB 2048SP</p></a>
+        </div>
+        <h3 class="sub rv" style="margin-top:40px">Periféricos</h3>
+        <div class="pgrid parts">
+            <a class="part fx rv" style="--i:0" href="https://www.mercadolibre.com.mx/raton-razer-essential-deathadder-negro/p/MLM6214305?pdp_filters=item_id:MLM4587521234&sid=purchases" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/mouse.png" alt="" data-m="🖱️"></div><span class="lbl">Mouse</span><h3>Razer DeathAdder Essential</h3><p>&nbsp;</p></a>
+            <a class="part fx rv" style="--i:1" href="https://articulo.mercadolibre.com.mx/MLM-1919940171-terport-teclado-mecanico-gamer-60-z11-e19-luz-amarilla-con-switch-huano-red-hotswap-61-teclas-ingles-anti-ghosting-color-negrogris-negrogris-red-switch-ingles-ingles-us-_JM?sid=purchases" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/tecla.png" alt="" data-m="⌨️"></div><span class="lbl">Teclado</span><h3>TERPORT 60%</h3><p>&nbsp;</p></a>
+            <a class="part fx rv" style="--i:2" href="https://articulo.mercadolibre.com.mx/MLM-3388911358-monitor-gamer-xundefined-x250gf18-25-fhd-180hz-bocina-ips-_JM?sid=purchases" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/monitor.png" alt="" data-m="🖥️"></div><span class="lbl">Monitor 1</span><h3>XUNDEFINED</h3><p>24" · 1080p · 180 Hz</p></a>
+            <a class="part fx rv" style="--i:3" href="https://www.amazon.com.mx/dp/B0CR6NCKVQ" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/monitor1.png" alt="" data-m="📺"></div><span class="lbl">Monitor 2</span><h3>QTouch</h3><p>24" · 1080p · 60 Hz</p></a>
+            <a class="part fx rv" style="--i:0" href="https://www.amazon.com.mx/dp/B0BJVDRSSZ" target="_blank" rel="noopener"><div class="thumb"><img src="assets/avatars/microfono.png" alt="" data-m="🎙️"></div><span class="lbl">Micrófono</span><h3>BM-800</h3><p>&nbsp;</p></a>
+        </div>
+    </section>
 </main>
-<footer>
-    © 2026 Zansumi • All Rights Reserved
-</footer>
 
+<footer>© 2026 Zansumi. Todos los derechos reservados.</footer>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* fallback si falta una imagen */
+function fb(img,cls,txt){var d=document.createElement('div');d.className=cls;d.textContent=txt;img.replaceWith(d)}
+document.querySelectorAll('.thumb img').forEach(function(i){
+    function f(){fb(i,'mark',i.dataset.m||'?')}
+    i.addEventListener('error',f); if(i.complete&&i.naturalWidth===0)f();
+});
+document.querySelectorAll('.social img').forEach(function(i){
+    function f(){fb(i,'fb',i.dataset.f||'?')}
+    i.addEventListener('error',f); if(i.complete&&i.naturalWidth===0)f();
+});
+
+/* tarjetas sin link todavía no hacen nada */
+document.querySelectorAll('.pcard,.part').forEach(function(a){a.addEventListener('click',function(e){if(a.getAttribute('href')==='#')e.preventDefault()})});
+
+/* marquee: duplica el contenido para loop infinito */
+var t=document.getElementById('track'); t.innerHTML+=t.innerHTML;
+
+/* reveal + contadores */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+function count(el){
+    var to=+el.dataset.count,s=performance.now(),d=1600;
+    if(reduce){el.textContent=to;return}
+    (function step(n){var p=Math.min((n-s)/d,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)})(s);
+}
+document.querySelectorAll('[data-count]').forEach(count);
+
+/* brillo que sigue al mouse + tilt 3D */
+var c=document.getElementById('cursor');
+if(matchMedia('(pointer:fine)').matches&&!reduce){
+    addEventListener('mousemove',function(e){c.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'});
+    document.querySelectorAll('.pcard').forEach(function(p){
+        p.addEventListener('mousemove',function(e){
+            var r=p.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+            p.style.setProperty('--ry',(x*12)+'deg');p.style.setProperty('--rx',(-y*12)+'deg');
+        });
+        p.addEventListener('mouseleave',function(){p.style.setProperty('--rx','0deg');p.style.setProperty('--ry','0deg')});
+    });
+}else c.remove();
+
+/* brasas flotantes */
+var cv=document.getElementById('embers');
+if(!reduce){
+    var x=cv.getContext('2d'),W,H,P=[];
+    function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+    size();addEventListener('resize',size);
+    function mk(init){return{x:Math.random()*W,y:init?Math.random()*H:H+10,r:Math.random()*2+.6,v:Math.random()*.7+.25,dx:(Math.random()-.5)*.4,w:Math.random()*Math.PI*2,c:Math.random()<.3?'255,255,255':'255,42,61'}}
+    for(var i=0;i<70;i++)P.push(mk(true));
+    (function loop(){
+        x.clearRect(0,0,W,H);
+        P.forEach(function(p,i){
+            p.y-=p.v;p.w+=.02;p.x+=p.dx+Math.sin(p.w)*.3;
+            if(p.y<-10)P[i]=mk(false);
+            x.beginPath();x.fillStyle='rgba('+p.c+','+(.25+p.r/5)+')';x.shadowBlur=10;x.shadowColor='rgb('+p.c+')';
+            x.arc(p.x,p.y,p.r,0,6.283);x.fill();
+        });
+        requestAnimationFrame(loop);
+    })();
+}
+})();
+</script>
 </body>
 </html>
