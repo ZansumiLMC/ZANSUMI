@@ -391,7 +391,7 @@ footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9r
 </main>
 
 <!-- MUSICA: se activa sola si hay canciones en assets/music/ -->
-<div class="player" id="player" hidden>
+<div class="player" id="player">
     <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <span class="ptitle" id="ptitle">Música</span>
     <button id="pprev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
@@ -489,12 +489,6 @@ var tracks=[
     {t:'Canción 1',s:'assets/music/cancion1.mp3'},
     {t:'Canción 2',s:'assets/music/cancion2.mp3'},
     {t:'Canción 3',s:'assets/music/cancion3.mp3'}
-    {t:'Canción 3',s:'assets/music/cancion4.mp3'}
-    {t:'Canción 3',s:'assets/music/cancion5.mp3'}
-    {t:'Canción 3',s:'assets/music/cancion6.mp3'}
-    {t:'Canción 3',s:'assets/music/cancion7.mp3'}
-    {t:'Canción 3',s:'assets/music/cancion8.mp3'}
-    {t:'Canción 3',s:'assets/music/cancion9.mp3'}
 ];
 var P=document.getElementById('player'),a=new Audio(),i=0,fails=0,auto=true;
 var T=document.getElementById('ptitle'),bp=document.getElementById('pplay'),bm=document.getElementById('pmute'),v=document.getElementById('pvol');
@@ -528,7 +522,7 @@ a.addEventListener('ended',function(){load(i+1,true)});
 a.addEventListener('loadedmetadata',function(){fails=0;P.hidden=false;sync()});
 a.addEventListener('error',function(){
     fails++;
-    if(fails>=tracks.length){P.remove();console.warn('No hay canciones en assets/music/');return}
+    if(fails>=tracks.length){T.textContent='No encuentro las canciones';P.title='Sube tus .mp3 a assets/music/ y revisa que los nombres coincidan con la lista del codigo';console.warn('No se encontro ninguna cancion. Revisa assets/music/ y los nombres (mayusculas, espacios y extension).');return}
     load(i+1,!a.paused||auto);
 });
 /* los navegadores bloquean el audio hasta que la persona interactua: arranca al primer click/tecla */
