@@ -634,8 +634,21 @@ function animate(to){
         if(k<1)requestAnimationFrame(step);
     })(t0);
 }
+function jsonp(action){
+    /* segunda ruta: carga por <script>, no depende de CORS ni de fetch */
+    return new Promise(function(res,rej){
+        var cb='abx'+Date.now()+Math.floor(Math.random()*1e4),sc=document.createElement('script');
+        var t=setTimeout(function(){cleanup();rej(new Error('timeout'))},8000);
+        function cleanup(){clearTimeout(t);delete window[cb];sc.remove()}
+        window[cb]=function(d){cleanup();typeof d.value==='number'?res(d.value):rej(new Error(d.error||'sin valor'))};
+        sc.onerror=function(){cleanup();rej(new Error('script bloqueado'))};
+        sc.src=base+'/'+action+'/'+NS+'/'+KEY+'?callback='+cb;
+        document.head.appendChild(sc);
+    });
+}
 function call(action){
-    return fetch(base+'/'+action+'/'+NS+'/'+KEY).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=='number')throw new Error('sin valor');return d.value});
+    return fetch(base+'/'+action+'/'+NS+'/'+KEY).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=='number')throw new Error(d.error||'sin valor');return d.value})
+    .catch(function(e){console.warn('[visitas] fetch fallo ('+e.message+'), probando JSONP');return jsonp(action)});
 }
 function update(){call('get').then(function(n){if(typeof n==='number'&&n!==shown)animate(n)}).catch(function(){})}
 /* suma 1 visita solo una vez por sesion para no inflar el numero al recargar */
@@ -645,7 +658,7 @@ call(counted?'get':'hit').then(function(n){
     try{sessionStorage.setItem('zv','1')}catch(e){}
 }).catch(function(){
     /* si el contador aun no existe, hit lo crea */
-    call('hit').then(function(n){if(typeof n==='number')animate(n)}).catch(function(){el.textContent='--'});
+    call('hit').then(function(n){if(typeof n==='number')animate(n)}).catch(function(e){console.error('[visitas] no se pudo conectar',e);el.textContent='--'});
 });
 /* se actualiza solo cada 30 segundos */
 setInterval(function(){if(!document.hidden)update()},30000);
