@@ -240,6 +240,15 @@ body.locked{overflow:hidden}
 @media(min-width:1500px){.ptitle{display:block}}
 @media(max-width:1199px){.player{top:auto;bottom:10px;left:10px}}
 @media(max-width:600px){#pvol{width:64px}.player{gap:4px;padding:5px 8px}}
+
+/* ---------- CONTADOR DE VISITAS ---------- */
+.visits{position:absolute;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:8px;
+    padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.05);
+    font-size:.85rem;color:var(--muted);white-space:nowrap}
+.visits b{color:#fff;font-family:var(--display);font-weight:700;text-shadow:var(--glow);min-width:1ch;font-variant-numeric:tabular-nums}
+.visits .dot{width:8px;height:8px;border-radius:50%;background:#ff2a3d;box-shadow:0 0 8px #ff2a3d,0 0 16px #ff2a3d;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+@media(max-width:600px){.visits{top:10px;right:10px;transform:none;padding:4px 9px;font-size:.75rem}}
 footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9rem}
 
 @media(max-width:1000px){.pcard{flex-basis:calc(33.33% - 14px)}}
@@ -264,6 +273,7 @@ footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9r
         <a href="#friends">Amigos</a>
         <a href="#setup">Mi PC</a>
     </div>
+    <div class="visits" id="visits" title="Visitas totales de la página" aria-live="polite"><span class="dot"></span><span>Visitas</span><b id="visitsNum">--</b></div>
 </nav>
 
 <!-- HERO -->
@@ -272,7 +282,6 @@ footer{text-align:center;padding:70px 20px 40px;color:var(--muted);font-size:.9r
     <img class="hero-bg" id="heroBg" src="assets/banners/baner2.png" alt="">
     <div class="ring"><img src="assets/avatars/logonwevo2.png" class="hero-avatar" alt="Logo de Zansumi"></div>
     <h1>Zansumi</h1>
-    <p class="hero-subtitle">Minecraft Developer y Creador de contenido</p>
     <div class="badges"><span>Creador de contenido</span><span>Developer</span></div>
 
     <!-- REDES: cambia el src de cada imagen por tu icono en assets/icons/ -->
@@ -608,6 +617,35 @@ shuffle();load(0,false);
 a.play().then(function(){auto=false;unbind()}).catch(function(){P.classList.add('wait');P.title='Toca la página para activar la música'});
 a.addEventListener('play',function(){P.classList.remove('wait')});
 sync();
+})();
+</script>
+<script>
+/* CONTADOR DE VISITAS EN VIVO (GitHub Pages no tiene backend, se usa counterapi.dev) */
+(function(){
+var NS='zansumilmc-github-io',KEY='zansumi-visitas';
+var base='https://api.counterapi.dev/v1/'+NS+'/'+KEY;
+var el=document.getElementById('visitsNum'),shown=0;
+function fmt(n){return n.toLocaleString('es-MX')}
+function animate(to){
+    var from=shown,t0=performance.now();shown=to;
+    (function step(t){
+        var k=Math.min((t-t0)/700,1);
+        el.textContent=fmt(Math.round(from+(to-from)*k));
+        if(k<1)requestAnimationFrame(step);
+    })(t0);
+}
+function call(path){
+    return fetch(base+path).then(function(r){return r.json()}).then(function(d){return d.count});
+}
+function update(){call('').then(function(n){if(typeof n==='number'&&n!==shown)animate(n)}).catch(function(){})}
+/* suma 1 visita solo una vez por sesion para no inflar el numero al recargar */
+var counted=false;try{counted=sessionStorage.getItem('zv')==='1'}catch(e){}
+(counted?call(''):call('/up')).then(function(n){
+    if(typeof n==='number')animate(n);
+    try{sessionStorage.setItem('zv','1')}catch(e){}
+}).catch(function(){el.textContent='--'});
+/* se actualiza solo cada 30 segundos */
+setInterval(function(){if(!document.hidden)update()},30000);
 })();
 </script>
 </body>
