@@ -620,10 +620,10 @@ sync();
 })();
 </script>
 <script>
-/* CONTADOR DE VISITAS EN VIVO (GitHub Pages no tiene backend, se usa counterapi.dev) */
+/* CONTADOR DE VISITAS EN VIVO (servicio gratis Abacus, sin cuenta ni clave) */
 (function(){
-var NS='zansumilmc-github-io',KEY='zansumi-visitas';
-var base='https://api.counterapi.dev/v1/'+NS+'/'+KEY;
+var NS='zansumilmc.github.io',KEY='zansumi-visitas';
+var base='https://abacus.jasoncameron.dev';
 var el=document.getElementById('visitsNum'),shown=0;
 function fmt(n){return n.toLocaleString('es-MX')}
 function animate(to){
@@ -634,16 +634,19 @@ function animate(to){
         if(k<1)requestAnimationFrame(step);
     })(t0);
 }
-function call(path){
-    return fetch(base+path).then(function(r){return r.json()}).then(function(d){return d.count});
+function call(action){
+    return fetch(base+'/'+action+'/'+NS+'/'+KEY).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=='number')throw new Error('sin valor');return d.value});
 }
-function update(){call('').then(function(n){if(typeof n==='number'&&n!==shown)animate(n)}).catch(function(){})}
+function update(){call('get').then(function(n){if(typeof n==='number'&&n!==shown)animate(n)}).catch(function(){})}
 /* suma 1 visita solo una vez por sesion para no inflar el numero al recargar */
 var counted=false;try{counted=sessionStorage.getItem('zv')==='1'}catch(e){}
-(counted?call(''):call('/up')).then(function(n){
+call(counted?'get':'hit').then(function(n){
     if(typeof n==='number')animate(n);
     try{sessionStorage.setItem('zv','1')}catch(e){}
-}).catch(function(){el.textContent='--'});
+}).catch(function(){
+    /* si el contador aun no existe, hit lo crea */
+    call('hit').then(function(n){if(typeof n==='number')animate(n)}).catch(function(){el.textContent='--'});
+});
 /* se actualiza solo cada 30 segundos */
 setInterval(function(){if(!document.hidden)update()},30000);
 })();
