@@ -2,12 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<script>
-/* base del sitio: en GitHub Pages es /ZANSUMI/ (permite rutas limpias sin #) */
-(function(){var b='';if(/github\.io$/.test(location.hostname)){var s=location.pathname.split('/')[1];if(s)b='/'+s}
-window.__BASE=b;if(b&&location.protocol!=='file:')document.write('<base href="'+b+'/">')})();
-document.documentElement.classList.add('js');
-</script>
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zansumi | Creador de contenido</title>
 <meta name="description" content="Creador de contenido. Hago streams, armo eventos de Minecraft y desarrollo servidores y páginas web.">
@@ -623,23 +618,18 @@ footer{text-align:center;padding:10px 20px;color:var(--ash);font-size:.8rem;bord
 <script>
 /* ============ RUTAS LIMPIAS + PESTAÑAS ============ */
 (function(){
-var base=window.__BASE||'';
 var TITLES={inicio:'Zansumi | Creador de contenido','sobre-mi':'Sobre mí | Zansumi',proyectos:'Proyectos | Zansumi',contenido:'Contenido | Zansumi',setup:'Setup | Zansumi',contacto:'Contacto | Zansumi','404':'404 | Zansumi'};
 var ORDER=['inicio','sobre-mi','contenido','setup','proyectos','contacto'];
 var NAMES={inicio:'Inicio','sobre-mi':'Sobre mí',proyectos:'Proyectos',contenido:'Contenido',setup:'Setup',contacto:'Contacto'};
 var view=document.getElementById('view'),cur='inicio',counted=false;
-var canPush=location.protocol!=='file:'&&!!history.pushState;
-
-/* viene redirigido desde 404.html (?p=/ruta): lo dejamos como /ruta */
-if(canPush){var q=new URLSearchParams(location.search).get('p');if(q){try{history.replaceState(null,'',base+'/'+q.replace(/^\/+/,''))}catch(e){}}}
-
-function urlOf(k){return base+'/'+(k==='inicio'?'':k)}
+function urlOf(k){return k==='inicio'?'#':'#'+k}
 function fromPath(){
-    if(!canPush)return cur;
-    var p=location.pathname;if(base&&p.indexOf(base)===0)p=p.slice(base.length);
-    p=p.replace(/^\/+|\/+$/g,'').split('/')[0].toLowerCase();
-    if(p==='historia')p='sobre-mi';if(p==='streams')p='contenido';if(p==='amigos')p='';if(p==='comisiones'||p==='precios')p='proyectos';
-    if(p===''||/^index[^/]*\.html?$/.test(p))return 'inicio';
+    var p=location.hash.replace(/^#\/?/,'').split('/')[0].toLowerCase();
+    if(p==='historia')p='sobre-mi';
+    if(p==='streams')p='contenido';
+    if(p==='amigos')p='';
+    if(p==='comisiones'||p==='precios')p='proyectos';
+    if(p==='')return 'inicio';
     return TITLES[p]&&p!=='404'?p:'404';
 }
 function fit(){document.querySelectorAll('#v-proyectos .fview').forEach(function(v){var f=v.firstElementChild;if(v.clientWidth)f.style.transform='scale('+(v.clientWidth/1440)+')'})}
@@ -670,7 +660,7 @@ function show(k){
     if(k==='inicio'&&!counted){counted=true;document.querySelectorAll('[data-count]').forEach(count)}
 }
 function go(k){
-    if(canPush){try{history.pushState(null,'',urlOf(k))}catch(e){}}
+    if(k==='inicio'){if(location.hash)location.hash=''}else location.hash=k;
     show(k);
 }
 document.addEventListener('click',function(e){
@@ -678,7 +668,7 @@ document.addEventListener('click',function(e){
     if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
     e.preventDefault();go(a.dataset.nav);
 });
-addEventListener('popstate',function(){show(fromPath())});
+addEventListener('hashchange',function(){var k=fromPath();if(k!==cur)show(k)});
 addEventListener('resize',fit);
 /* los links de las pestañas apuntan a la ruta real (sin #) */
 document.querySelectorAll('a[data-nav]').forEach(function(a){a.setAttribute('href',urlOf(a.dataset.nav))});
