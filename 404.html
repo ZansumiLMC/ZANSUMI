@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#15110e">
+<title>404 | Zansumi</title>
+<script>
+/* GitHub Pages sirve este archivo cuando la ruta no existe como archivo.
+   Si es una sección válida (/historia, /precios...), la manda al index, que la abre como pestaña.
+   Si no es válida, se queda aquí y muestra el 404. */
+(function(){
+var KNOWN=['sobre-mi','historia','contenido','setup','proyectos','contacto','comisiones','precios','streams','amigos'];
+var seg=location.pathname.split('/');
+var base=/github\.io$/.test(location.hostname)&&seg[1]?'/'+seg[1]:'';
+window.__BASE=base;
+var route=(seg[base?2:1]||'').toLowerCase();
+if(KNOWN.indexOf(route)>-1){
+    document.documentElement.style.display='none';
+    location.replace(base+'/?p=/'+route+location.hash);
+}
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#15110e;--coal:#34312c;--ash:#7e7f82;--red:#fe0000;--crimson:#dc0000;--paper:#f1eee9;--soft:#b4b2ae}
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100dvh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 40%,#1a0000,#000 75%);color:var(--paper);font-family:'DM Sans','Segoe UI',sans-serif;text-align:center}
+main{display:flex;flex-direction:column;align-items:center;gap:14px}
+img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--crimson)}
+.big{font-family:'Bricolage Grotesque','Segoe UI',sans-serif;font-weight:800;font-size:clamp(6rem,26vw,13rem);line-height:.85;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:3px var(--red)}
+h1{font-family:'Bricolage Grotesque','Segoe UI',sans-serif;font-size:clamp(1.5rem,4vw,2.2rem);letter-spacing:-.03em}
+p{color:var(--soft);max-width:40ch}
+a{margin-top:10px;padding:11px 26px;border-radius:10px;background:var(--crimson);color:#fff;text-decoration:none;font-weight:500;transition:background .2s}
+a:hover{background:var(--red)}
+a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+    <img id="logo" alt="Logo de Zansumi">
+    <div class="big">404</div>
+    <h1>Esta página no existe</h1>
+    <p>Revisa la dirección o vuelve al inicio.</p>
+    <a id="home" href="/">Ir al inicio</a>
+</main>
+<script>
+document.getElementById('home').href=(window.__BASE||'')+'/';
+document.getElementById('logo').src=(window.__BASE||'')+'/assets/avatars/logonwevo2.png';
+</script>
+</body>
+</html>

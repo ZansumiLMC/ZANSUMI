@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <script>
 /* base del sitio: en GitHub Pages es /ZANSUMI/ (permite rutas limpias sin #) */
-(function(){var b='';if(location.hostname.slice(-10)==='github.io'){var s=location.pathname.split('/')[1];if(s)b='/'+s}
+(function(){var b='';if(/github\.io$/.test(location.hostname)){var s=location.pathname.split('/')[1];if(s)b='/'+s}
 window.__BASE=b;if(b&&location.protocol!=='file:')document.write('<base href="'+b+'/">')})();
 document.documentElement.classList.add('js');
 </script>
@@ -639,7 +639,7 @@ function fromPath(){
     var p=location.pathname;if(base&&p.indexOf(base)===0)p=p.slice(base.length);
     p=p.replace(/^\/+|\/+$/g,'').split('/')[0].toLowerCase();
     if(p==='historia')p='sobre-mi';if(p==='streams')p='contenido';if(p==='amigos')p='';if(p==='comisiones'||p==='precios')p='proyectos';
-    if(p===''||p==='index.html')return 'inicio';
+    if(p===''||/^index[^/]*\.html?$/.test(p))return 'inicio';
     return TITLES[p]&&p!=='404'?p:'404';
 }
 function fit(){document.querySelectorAll('#v-proyectos .fview').forEach(function(v){var f=v.firstElementChild;if(v.clientWidth)f.style.transform='scale('+(v.clientWidth/1440)+')'})}
